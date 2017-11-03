@@ -1,6 +1,8 @@
 # laravel-oauth-client
 laravel-oauth-client with port=9000
 
+*Note: the routes setting is inside routes/web.php*
+
 # API #
 http://localhost:9000/
 
