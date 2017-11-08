@@ -86,6 +86,41 @@ Route::get('/', function () {
 //    return json_decode((string) $response->getBody(), true);
 //});
 
+// for couple with laravel-oauth-server (Password Grant)
+Route::get('/password_grant', function (\Illuminate\Http\Request $request) {
+    $http = new GuzzleHttp\Client;
+    
+    $response = $http->post('http://localhost:8000/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => 6,        
+            'client_secret' => 'Fy0vt8nwsDrrviaNJTPjutkMBLYiq0d5CBLUeowx',  
+            'username' => 'kungkk@goodytechnologies.com',
+            'password' => 'ilovegoody25',            
+            'scope' => '']    
+    ]);
+    
+    // working code
+    //return json_decode((string) $response->getBody(), true)['access_token'];
+    
+    return json_decode((string) $response->getBody(), true);
+});
+
+
+Route::get('/password_grant-user_id', function (\Illuminate\Http\Request $request) {
+    $http = new Client([
+        'defaults' => [
+            'headers' => ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU2ZTRkODUyNjU0YjRlNmY0ZjYwMWMyNzVhMjM3MzBlZWQyODUyZjY2ZmI5ZWRkYzNjNDE1NmZkYzc2YjU4NzE2NGU5NmI3MzRiY2E1NjBmIn0.eyJhdWQiOiI2IiwianRpIjoiZTZlNGQ4NTI2NTRiNGU2ZjRmNjAxYzI3NWEyMzczMGVlZDI4NTJmNjZmYjllZGRjM2M0MTU2ZmRjNzZiNTg3MTY0ZTk2YjczNGJjYTU2MGYiLCJpYXQiOjE1MTAxMjcwNzUsIm5iZiI6MTUxMDEyNzA3NSwiZXhwIjoxNTQxNjYzMDc1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.I2JDcqfZgaRyXdgZlfRl00KBDAQycXHxdUhSWNma4MBvzdQbOx-7gz4FGS0CaiiKzj7eCLnLxicLvMyoSLTimIqTy0tA_6Q8Zq3_w7awJue4afhdG4j2bWa0Pg-672ylV9T5LygmdIyKf4J6l8Wnn8QdvMm79CSTNMjBtzj2omuQ7Un-_3DF-a2rNW2KrGbzXaOh3FJn-s_L5fV_bWYABHRyGzXVyVHKnGoAScWCSV16Yg2dv1xUIO9s6yFRRQTz5ZuDZNmS3zHjN0bkU8wsqznIPfvWXmBo02f3CSDodSFIrYQtU5Yy7saWFDDEV8IpFPIspnhICI2iGebVRHWhhC45GT3Uk7eB_0GXXUG_ZTOHOd9MEU2L6vRS9IJaWs3pu5d48uGhstlE5HBxWLGFSfyB5wnxjf0MI5svNqfT6DpbtYlAQ7HgftLmNMV9mvTbcjuMwzVgQrm6y4IKox9Rpuj7rnpGKFkQz8lPzPjNAYObyURyjiq0ovZ3OgqDvBFRk0RXJgnPiC0rTZBFUMTRAL-k3VeVlD6gHCzYVHWr6yByZ6YaD6_FZ3Ak-DiJ7QAI-B-UijT1dR8IAsmVC1HkfJkMK6LP2uUo494lZJu3SBVqk_MNkl3399ZZrthHcCp5FIWxTUdCNhJTHDzE3cJqWDfqWMHE1bQcAsE8qetlRiI']
+        ]
+    ]);
+    $response = $http->get('http://localhost:8000/api/password_grant-user_id');
+    
+    
+    //return json_decode((string) $response->getBody(), true)['data'];
+    //return json_decode((string) $response->getBody(), true);
+    return $response->getBody();
+});
+
 // for couple with gocod-api (Authorization Code Grant)
 //Route::get('/', function () {
 //    $query = http_build_query([
@@ -124,6 +159,24 @@ Route::get('/client', function (\Illuminate\Http\Request $request) {
             'grant_type' => 'client_credentials',
             'client_id' => 2,        
             'client_secret' => 'ziR59EszIzjV2djqfFCRSrzWrGIntMP1i0Y54DlF',            
+            'scope' => '']    
+    ]);
+    
+    // working code
+    //return json_decode((string) $response->getBody(), true)['access_token'];
+    
+    return json_decode((string) $response->getBody(), true);
+});
+
+
+Route::get('/angular_app', function (\Illuminate\Http\Request $request) {
+    $http = new GuzzleHttp\Client;
+    
+    $response = $http->post('http://localhost:8080/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'client_credentials',
+            'client_id' => 5,        
+            'client_secret' => 'Y425x8fRHe7JN3hkW2Ob5yI9EgMX0C8VZqvoiRMG',            
             'scope' => '']    
     ]);
     
